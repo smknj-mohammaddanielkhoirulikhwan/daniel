@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+   <meta charset="utf-8">
+   <title>Vue JS Study</title>
+   <script src="vue.js"></script>
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+   <h1>BELAJAR VUE JS</h1>
+
+   <div id="app">
+      <input type="text" v-model="nama">
+      <p>{{nama}}</p>
+      <input type="text" v-model="telp">
+      <p>{{telp}}</p>
+      <hr />
+      <input type="number" v-model="bil1"><input type="number" v-model="bil2">
+      <button @click="tambah">+</button>
+      <button @click="kurang">-</button>
+      <button @click="kali">x</button>
+      <button @click="bagi">:</button>
+      <p>Hasil tambah: {{hasiltambah}}</p>
+      <p>Hasil kurang:{{hasilkurang}}</p>
+      <p>Hasil kali:{{hasilkali}}</p>
+      <p>Hasil bagi:{{hasilbagi}}</p>
+      <hr>
+      <table border="1">
+         <tr>
+            <td>Mata Pelajaran</td>
+            <td>Nilai</td>
+            <td><button @click="rata">Rata-Rata</button></td>
+         </tr>
+         <tr>
+            <td>Matematika</td>
+            <td><input type="number" v-model="mate"></td>
+            <td rowspan="2">{{rata}}</td>
+         </tr>
+         <tr>
+            <td>Bahasa Indonesia</td>
+            <td><input type="number" v-model="indo"></td>
+         </tr>
+         <tr>
+            <td colspan="3"><span v-if="rata >= 70 && rata <=100"><b>LULUS</b></span><span v-else="rata"><b>TIDAK
+                     LULUS</b></span></td>
+         </tr>
+      </table>
+      <hr />
+      <label>Bilangan 1</label>
+      <input type="number" v-model="no1">
+      <br />
+      <label>Bilangan 2</label>
+      <input type="number" v-model="no2">
+      <br />
+      <p>{{value1}}</p>
+      <br />
+      <p>{{value2}}</p>
+
+      <br />
+      <p>{{value3}}</p>
+
+      <br />
+      <p>{{value4}}</p>
+
+      <hr />
+      <h2>Tentang Dinamik CSS</h2>
+      <button @click="jaya = !jaya">Toggle Jaya</button>
+      <button @click="tersedia = !tersedia">Toggle UNUJA</button>
+      <div :class="ClassComp"><span style="font-size: 100px;">UNUJA</span></div>
+      <hr />
+      <div><span v-for="n in 10">{{ n }}</span></div>
+      <hr />
+      {{jurusan[0]}},
+      {{jurusan[1]}},
+      {{jurusan[2]}},
+      {{jurusan[3]}},
+      <br />
+      <ul>
+         <li v-for="row in jurusan"> {{row}} </li>
+      </ul>
+      <br />
+      <ul>
+         <li v-for="row in mahasiswa">{{row.nama}}-{{row.umur}}</li>
+      </ul>
+      <br />
+      <template v-for="(row,index) in mahasiswa">
+         <h3>{{index}}. {{row.nama}}</h3>
+         <p>{{row.age}}</p>
+      </template>
+      <hr />
+      <table border="1">
+         <tr>
+            <th>NO</th>
+            <th>Nama</th>
+            <th>Umur</th>
+         </tr>
+         <tr v-for="(row,index) in mahasiswa">
+            <td>{{index+1}}</td>
+            <td>{{row.nama}}</td>
+            <td>{{row.umur}}</td>
+         </tr>
+      </table>
+      <hr />
+      <hr />
+      <input type="text" ref="inputan">
+      <button @click="klikDisini()">Send</button>
+      hasil: {{text}}
+
+      <div ref="dataku">Pagi Dunia Tipu-Tipu</div>
+
+      <hr />
+      <br />
+      <br />
+      <br />
+      <h1>Flay</h1>
+      <br />
+      <br />
+      <table border="1">
+         <tr>
+            <td>Table 2</td>
+            <td><Button @click="end">Ket</Button></td>
+         </tr>
+         <tr>
+            <td><input type="number" v-model="nilai1"><input type="number" v-model="nilai2"></td>
+            <td>
+               <p v-if="ket >= 80 && ket <=100">Lulus</p>
+               <p v-else="ket">Tidak Lulus</p>
+            </td>
+         </tr>
+      </table>
+      <hr />
+      <table border="2">
+         <tr>
+            <th>Table 1</th>
+            <th>Ket</th>
+         </tr>
+         <tr>
+            <th><input type="number" v-model="b1"><input type="number" v-model="b2"></th>
+            <th>
+               <p v-if="start >= 80 && start <= 100">Lulus</p>
+               <p v-else="start">Tidak Lulus</p>
+            </th>
+         </tr>
+      </table>
+      <hr />
+      <table border="2">
+         <tr>
+            <td>Table 3</td>
+            <td @click="anjay = !anjay">Ket</td>
+         </tr>
+         <tr>
+            <th><input type="number" v-model="h1"><input type="number" v-model="h2"></th>
+            <th>
+               <p v-if="warna >= 80 && warna <= 100" :class="ClassComp"><span style="background: green;"> Lulus</span></p>
+               <p v-else="warna"><span style="background: red;">Tidak lulus</span></p>
+            </th>
+         </tr>
+      </table>
+      <hr />
+   </div>
+
+   <div id="satu">
+      <hr />
+      <sapa></sapa>
+      <sapa></sapa>
+      <hr />
+      <p v-if="tampil">Data terlihat</p>
+      <p v-else="tampil">Data terlihat</p>
+      <p v-if="lampu=='kuning'">Pelan-pelan ya</p>
+      <p v-else-if="lampu=='merah'">Berhenti Dulu
+      </p>
+      <p v-else-if="lampu=='hijau'">Berangkat ya
+      </p>
+      <p v-else="lampu">Sistem Error</p>
+      <hr />
+      <input type="password" placeholder="v-if" v-model="passwordif">
+      <p class="pesan-error" v-if="passwordif.length < 6"> isi password minimal 6 karakter </p>
+      <br/>
+      <input type="password" placeholder="v-show" v-model="passwordshow">
+      <p class="pesan-error" v-show="passwordshow.length < 6"> isi password minimal 6 karakter </p>
+   </div>
+
+   <div id="dua">
+      <input type="text" ref="inputan">
+      <button @click="KlikDisini()
+      ">Kirim</button>
+      Hasil: {{text}}
+
+      <div ref="dataku">Hello Word!!!</div>
+
+      <hr>
+      <br>
+      <br>
+      <table>
+         <tr>
+            <td>Nama Siswa : </td>
+            <td><input type="text" placeholder="Nama" v-model="siswa"></td>
+            <td><p class="pesan-error" v-if="siswa.length < 1">Nama masih kosong</p></td>
+         </tr>
+         <tr>
+            <td>Nilai Matematika : </td>
+            <td><input type="number" placeholder="Nama" v-model="mtk"></td>
+            <td><p class="pesan-error" v-if="mtk.length < 1">Nilai masih kosong</p></td>
+         </tr>
+         <tr>
+            <td>Nilai Fisika : </td>
+            <td><input type="number" placeholder="Nama" v-model="fsk"></td>
+            <td><p class="pesan-error" v-if="fsk.length < 1">Nilai masih kosong</p></td>
+         </tr>
+         <tr>
+            <td>Nilai Agama : </td>
+            <td><input type="number" placeholder="Nama" v-model="agm"></td>
+            <td><p class="pesan-error" v-if="agm.length < 1">Nilai masih kosong</p></td>
+         </tr>
+         <tr>
+            <td>Nilai IPS : </td>
+            <td><input type="number" placeholder="Nama" v-model="ips"></td>
+            <td><p class="pesan-error" v-if="ips.length < 1">Nilai masih kosong</p></td>
+         </tr>
+         <tr>
+            <td>Nilai IPA : </td>
+            <td><input type="number" placeholder="Nama" v-model="ipa"></td>
+            <td><p class="pesan-error" v-if="ipa.length < 1">Nilai masih kosong</p></td>
+         </tr>
+         <tr>
+            <td>Nilai PPkN : </td>
+            <td><input type="number" placeholder="Nama" v-model="pkn"></td>
+            <td><p class="pesan-error" v-if="pkn.length < 1">Nilai masih kosong</p></td>
+         </tr>
+         <tr>
+            <td>Nilai Olahraga : </td>
+            <td><input type="number" placeholder="Nama" v-model="olg"></td>
+            <td><p class="pesan-error" v-if="olg.length < 1">Nilai masih kosong</p></td>
+         </tr>
+         <tr>
+            <td>Nama Siswa : </td>
+            <td><b>{{siswa}}</b></td>
+         </tr>
+         <tr>
+            <td>Nilai Rata-Rata : </td>
+            <td> {{hr}} </td>
+         </tr>
+         <tr>
+            <td>Predikat : </td>
+            <td><b v-if="hr >= 80 && hr <=100">A</b><b v-if="hr >= 70 && hr <= 79">B</b><b v-if="hr >= 60 && hr <=69">C</b><b v-if="hr >= 0 && hr <=59">D</b></td>
+         </tr>
+         <tr>
+            <td>Keterangan : </td>
+            <td><h1 v-if="hr >= 80 && hr<=100"><b  style="background: green;">LULUS</b></h1><h1 v-else="hr"><b  style="background: red;">TIDAK LULUS</b></h1></td>
+         </tr>
+
+      </table>
+   </div>
+
+
+
+   <script src="app.js"></script>
+</body>
+
+</html
